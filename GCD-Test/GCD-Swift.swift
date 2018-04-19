@@ -89,7 +89,9 @@ extension GCD_Swift
         queue.async {
             print("reading 3")
         }
+        print("执行完毕")
         //输出结果为：
+        //执行完毕
         //reading 1
         //barrier执行
         //reading 3
@@ -98,5 +100,92 @@ extension GCD_Swift
     }
 }
 
+// MARK: - dispatchGroup：用来追踪不同队列的不同任务，当group里所有的事件都完成后，有两种方式可以返回通知：1、wait，会阻塞当前线程  2、notify：block执行任务，不阻塞当前线程
+extension GCD_Swift
+{
+    func dispatch_Group() {
+        let numberArray = [("A","a"),("B","b"),("2","3")]
+        let group = DispatchGroup()
+        for invalue in numberArray {
+            DispatchQueue.global().async(group: group) {
+                sleep(3)
+                print("invalue=\(invalue.0)")
+            }
+        }
+        /*
+        group.wait()    //阻塞当前线程，group里的GCD不完成不调用后续代码
+        print("执行完成")
+        */
+        group.notify(queue: DispatchQueue.main) {
+            print("执行完成所有DCG任务，返回主线程")
+        }
+        print("调用完成")
+        
+        //输出为：
+        //调用完成
+        //invalue=A
+        //invalue=2
+        //invalue=B
+        //执行完成所有DCG任务，返回主线程
+    }
+}
+
+// MARK: - 信号量的使用：控制线程最大的并发数，通常先wait()然后再signal()，wait会将信号量-1，singal会将信号量+1。
+extension GCD_Swift
+{
+    func dispatch_semaphore() {
+        //创建信号量，默认最大并打线程数为2个
+        let semaphore = DispatchSemaphore(value: 2)
+        let queue = DispatchQueue(label: "queue", attributes: .concurrent)
+        queue.async {
+            semaphore.wait()
+            print("reading 1-start")
+            sleep(2)
+            print("reading 1-end")
+            semaphore.signal()
+        }
+        queue.async {
+            semaphore.wait()
+            print("reading 2-start")
+            sleep(2)
+            print("reading 2-end")
+            semaphore.signal()
+        }
+        queue.async {
+            semaphore.wait()
+            print("reading 3-start")
+            sleep(2)
+            print("reading 3-end")
+            semaphore.signal()
+        }
+        print("执行完毕")
+        //输出结果为：
+        //执行完毕
+        //reading 1-start
+        //reading 2-start
+        //reading 2-end
+        //reading 1-end
+        //reading 3-start
+        //reading 3-end
+        
+        //如果信号量初始化为1的时候，输出结果为：
+        //执行完毕
+        //reading 1-start
+        //reading 1-end
+        //reading 2-start
+        //reading 2-end
+        //reading 3-start
+        //reading 3-end
+    }
+}
+
+extension GCD_Swift
+{
+    //如题：有10个线程，如何获取到10个线程处理完成的通知？
+    //1、使用group，创建一个GCDGroup，开启10个并发线程，然后将10个线程放入group中，使用wait(阻塞当前线程)或者notify(不阻塞当前线程)触发处理。
+    //2、使用barrier，创建10个并发线程，然后再10个并发线程后创建barrier线程，这样就保证了barrier之前的线程处理完成后才能处理barrier
+    //3、使用信号量，则创建11个线程，开辟初始化信号量为10，这样就会有10个并发线程，10个线程处理完成后，才会调用最后一个线程，这样间接的完成了10个线程处理完成的通知行为。
+    //4、创建10个串行的异步队列，这样就会一个一个的下载
+}
 
 
