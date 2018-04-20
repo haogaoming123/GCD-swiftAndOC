@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A5130C7720863DDB00A058A1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5130C7620863DDB00A058A1 /* main.swift */; };
-		A5130C8020863E0500A058A1 /* GCD-OC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5130C7F20863E0500A058A1 /* GCD-OC.m */; };
 		A5130C8220863E3800A058A1 /* GCD-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5130C8120863E3800A058A1 /* GCD-Swift.swift */; };
+		AEE87CF8208982B700873BA7 /* NSOperation-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE87CF7208982B700873BA7 /* NSOperation-Swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,9 +28,8 @@
 		A5130C7320863DDB00A058A1 /* GCD-Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "GCD-Test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5130C7620863DDB00A058A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A5130C7D20863E0500A058A1 /* GCD-Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCD-Test-Bridging-Header.h"; sourceTree = "<group>"; };
-		A5130C7E20863E0500A058A1 /* GCD-OC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCD-OC.h"; sourceTree = "<group>"; };
-		A5130C7F20863E0500A058A1 /* GCD-OC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GCD-OC.m"; sourceTree = "<group>"; };
 		A5130C8120863E3800A058A1 /* GCD-Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GCD-Swift.swift"; sourceTree = "<group>"; };
+		AEE87CF7208982B700873BA7 /* NSOperation-Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOperation-Swift.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				A5130C7620863DDB00A058A1 /* main.swift */,
-				A5130C7E20863E0500A058A1 /* GCD-OC.h */,
-				A5130C7F20863E0500A058A1 /* GCD-OC.m */,
 				A5130C8120863E3800A058A1 /* GCD-Swift.swift */,
 				A5130C7D20863E0500A058A1 /* GCD-Test-Bridging-Header.h */,
+				AEE87CF7208982B700873BA7 /* NSOperation-Swift.swift */,
 			);
 			path = "GCD-Test";
 			sourceTree = "<group>";
@@ -130,9 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5130C8020863E0500A058A1 /* GCD-OC.m in Sources */,
 				A5130C7720863DDB00A058A1 /* main.swift in Sources */,
 				A5130C8220863E3800A058A1 /* GCD-Swift.swift in Sources */,
+				AEE87CF8208982B700873BA7 /* NSOperation-Swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
